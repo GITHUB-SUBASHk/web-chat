@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: auto; margin-bottom: 10px; }
+    #input { width: 100%; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Web Chat</h2>
+  <div id="chat"></div>
+  <input id="input" placeholder="Type your message and press Enter..." autocomplete="off" />
+
+  <script>
+    const nickname = prompt("Enter your name:");
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("input");
+    const ws = new WebSocket("wss://" + window.location.host + "/ws");
+
+    ws.onmessage = (event) => {
+      if (event.data === "NICKNAME") {
+        ws.send(nickname);
+      } else {
+        const now = new Date().toLocaleTimeString();
+        const msg = document.createElement("div");
+        msg.textContent = event.data + " [" + now + "]";
+        chat.appendChild(msg);
+        chat.scrollTop = chat.scrollHeight;
+      }
+    };
+
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && input.value.trim()) {
+        ws.send(nickname + ": " + input.value);
+        input.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
