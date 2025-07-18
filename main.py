@@ -1,7 +1,15 @@
+import os
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware 
+from dotnev import load_dotnev
+
+#load from .env
+load_dotenv()
+
+PORT= int(os.getenv("PORT",10000))
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS","*").split(",")
 
 app = FastAPI()
 
