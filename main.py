@@ -3,7 +3,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware 
-from dotnev import load_dotnev
+from dotenv import load_dotenv
 
 #load from .env
 load_dotenv()
