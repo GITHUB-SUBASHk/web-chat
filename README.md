@@ -46,12 +46,10 @@ The application listens on an internal container port (e.g., 8000) which is mapp
 - (Optional) AWS EC2 instance with Docker installed.
 - Internet access and basic command-line knowledge.
 
-2. Clone Repository
+2. Repository
 
 ```bash
-git clone https://github.com/your-username/web-chat.git
-cd web-chat
-
+(https://github.com/GITHUB-SUBASHk/web-chat.git)
 3. Setup Environment Variables (Optional)
 
 If your app uses environment variables, create a .env file:
